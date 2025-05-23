@@ -29,8 +29,8 @@ const HeroSection = ({ searchQuery, setSearchQuery }: HeroSectionProps) => {
 
           {/* Search Bar */}
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
                 <div className="md:col-span-2">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
