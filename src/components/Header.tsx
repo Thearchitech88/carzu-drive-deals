@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Heart, User, Menu, X, Car, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,6 +34,11 @@ const Header = () => {
     setActiveDropdown(null);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    closeDropdowns();
+  };
+
   return (
     <header 
       className={cn(
@@ -43,14 +49,14 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg">
               <Car className="h-6 w-6 text-white" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Carzu
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -64,49 +70,55 @@ const Header = () => {
               </button>
               {activeDropdown === 'buy' && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">New Cars</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Used Cars</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Certified Pre-Owned</a>
+                  <Link to="/new-cars" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50" onClick={closeDropdowns}>New Cars</Link>
+                  <Link to="/used-cars" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50" onClick={closeDropdowns}>Used Cars</Link>
+                  <Link to="/certified-pre-owned" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50" onClick={closeDropdowns}>Certified Pre-Owned</Link>
                 </div>
               )}
             </div>
-            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+            <Link to="/sell-your-car" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
               Sell Your Car
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+            </Link>
+            <Link to="/finance" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
               Finance
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+            </Link>
+            <Link to="/reviews" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
               Reviews
-            </a>
+            </Link>
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-gray-700 hover:text-blue-600 transition-colors">
-              <Heart className="h-4 w-4 mr-2" />
-              Saved
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="text-gray-700 hover:text-blue-600 transition-colors"
-              onClick={() => toggleDropdown('account')}
-            >
-              <User className="h-4 w-4 mr-2" />
-              Sign In
-              <ChevronDown className="h-4 w-4 ml-1" />
-            </Button>
-            {activeDropdown === 'account' && (
-              <div className="absolute right-20 top-16 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Sign In</a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Create Account</a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Dealer Login</a>
-              </div>
-            )}
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
-              List Your Car
-            </Button>
+            <Link to="/saved-cars">
+              <Button variant="ghost" size="sm" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <Heart className="h-4 w-4 mr-2" />
+                Saved
+              </Button>
+            </Link>
+            <div className="relative">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+                onClick={() => toggleDropdown('account')}
+              >
+                <User className="h-4 w-4 mr-2" />
+                Sign In
+                <ChevronDown className="h-4 w-4 ml-1" />
+              </Button>
+              {activeDropdown === 'account' && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                  <Link to="/login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50" onClick={closeDropdowns}>Sign In</Link>
+                  <Link to="/register" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50" onClick={closeDropdowns}>Create Account</Link>
+                  <Link to="/dealer-login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50" onClick={closeDropdowns}>Dealer Login</Link>
+                </div>
+              )}
+            </div>
+            <Link to="/list-your-car">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                List Your Car
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -135,26 +147,28 @@ const Header = () => {
                 </button>
                 {activeDropdown === 'mobile-buy' && (
                   <div className="pl-4 space-y-1 animate-in fade-in slide-in-from-top duration-200">
-                    <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">New Cars</a>
-                    <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">Used Cars</a>
-                    <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">Certified Pre-Owned</a>
+                    <Link to="/new-cars" className="block py-2 text-gray-700 hover:text-blue-600" onClick={closeMenu}>New Cars</Link>
+                    <Link to="/used-cars" className="block py-2 text-gray-700 hover:text-blue-600" onClick={closeMenu}>Used Cars</Link>
+                    <Link to="/certified-pre-owned" className="block py-2 text-gray-700 hover:text-blue-600" onClick={closeMenu}>Certified Pre-Owned</Link>
                   </div>
                 )}
               </div>
-              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium py-2">
+              <Link to="/sell-your-car" className="text-gray-700 hover:text-blue-600 font-medium py-2" onClick={closeMenu}>
                 Sell Your Car
-              </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium py-2">
+              </Link>
+              <Link to="/finance" className="text-gray-700 hover:text-blue-600 font-medium py-2" onClick={closeMenu}>
                 Finance
-              </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium py-2">
+              </Link>
+              <Link to="/reviews" className="text-gray-700 hover:text-blue-600 font-medium py-2" onClick={closeMenu}>
                 Reviews
-              </a>
+              </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
-                <Button variant="ghost" className="justify-start hover:bg-blue-50">
-                  <Heart className="h-4 w-4 mr-2" />
-                  Saved Cars
-                </Button>
+                <Link to="/saved-cars" onClick={closeMenu}>
+                  <Button variant="ghost" className="justify-start hover:bg-blue-50 w-full">
+                    <Heart className="h-4 w-4 mr-2" />
+                    Saved Cars
+                  </Button>
+                </Link>
                 <div className="space-y-1">
                   <Button 
                     variant="ghost" 
@@ -166,15 +180,17 @@ const Header = () => {
                   </Button>
                   {activeDropdown === 'mobile-account' && (
                     <div className="pl-4 space-y-1 animate-in fade-in slide-in-from-top duration-200">
-                      <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">Sign In</a>
-                      <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">Create Account</a>
-                      <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">Dealer Login</a>
+                      <Link to="/login" className="block py-2 text-gray-700 hover:text-blue-600" onClick={closeMenu}>Sign In</Link>
+                      <Link to="/register" className="block py-2 text-gray-700 hover:text-blue-600" onClick={closeMenu}>Create Account</Link>
+                      <Link to="/dealer-login" className="block py-2 text-gray-700 hover:text-blue-600" onClick={closeMenu}>Dealer Login</Link>
                     </div>
                   )}
                 </div>
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full mt-2">
-                  List Your Car
-                </Button>
+                <Link to="/list-your-car" onClick={closeMenu}>
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full mt-2">
+                    List Your Car
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
