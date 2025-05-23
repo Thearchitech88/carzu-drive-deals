@@ -1,12 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Search, MapPin, Calendar, Fuel, Settings, Heart, Star } from "lucide-react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import FeaturedCars from "@/components/FeaturedCars";
+import SearchFilters from "@/components/SearchFilters";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Header />
+      <HeroSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <SearchFilters />
+      <FeaturedCars />
+      <Footer />
     </div>
   );
 };
