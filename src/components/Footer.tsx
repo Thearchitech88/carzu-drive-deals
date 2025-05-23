@@ -2,12 +2,13 @@
 import { Car, Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
@@ -43,12 +44,12 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-white transition-colors">Buy a Car</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Sell Your Car</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Car Finance</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Insurance</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Reviews</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Car Guides</a></li>
+              <li><Link to="/buy-a-car" className="hover:text-white transition-colors">Buy a Car</Link></li>
+              <li><Link to="/sell-your-car" className="hover:text-white transition-colors">Sell Your Car</Link></li>
+              <li><Link to="/finance" className="hover:text-white transition-colors">Car Finance</Link></li>
+              <li><Link to="/car-insurance" className="hover:text-white transition-colors">Insurance</Link></li>
+              <li><Link to="/reviews" className="hover:text-white transition-colors">Reviews</Link></li>
+              <li><Link to="/car-guides" className="hover:text-white transition-colors">Car Guides</Link></li>
             </ul>
           </div>
 
@@ -56,12 +57,12 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-6">Support</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Safety Tips</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Dealer Program</a></li>
+              <li><Link to="/help-center" className="hover:text-white transition-colors">Help Center</Link></li>
+              <li><Link to="/contact-us" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link to="/safety-tips" className="hover:text-white transition-colors">Safety Tips</Link></li>
+              <li><Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/dealer-program" className="hover:text-white transition-colors">Dealer Program</Link></li>
             </ul>
           </div>
 
@@ -107,16 +108,16 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               © 2024 Carzu. All rights reserved. Built with love for car enthusiasts.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <div className="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
+              <Link to="/accessibility" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Accessibility
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              </Link>
+              <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Sitemap
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              </Link>
+              <Link to="/careers" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Careers
-              </a>
+              </Link>
             </div>
           </div>
         </div>
